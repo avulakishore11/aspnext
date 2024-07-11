@@ -12,14 +12,14 @@ EXPOSE 443
 # setup base image for SDK 
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 WORKDIR /src
-COPY ["AspnextTemplate.csproj", "AspnextTemplate/"]
+COPY src/template/Aspnext.Template.csproj .
 # run the dotnet restore
 
-RUN dotnet restore "AspnextTemplate/AspnextTemplate.csproj"
-COPY . ./AspnextTemplate
+RUN dotnet restore src/template/Aspnext.Template.csproj
+COPY . .
 WORKDIR "/src/AspnextTemplate"
-RUN dotnet build "AspnextTemplate.csproj" -c Release -o /app/build
+RUN dotnet build "src/template/Aspnext.Template.csproj" -c Release -o /app/build
 
 FROM build AS publish
-RUN dotnet publish "AspnextTemplate.csproj" -c Release -o /app/publish
+RUN dotnet publish "src/template/Aspnext.Template.csproj" -c Release -o /app/publish
 
