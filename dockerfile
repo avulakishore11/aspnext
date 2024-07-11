@@ -5,7 +5,7 @@ FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 WORKDIR /source
 
 # Copy the solution file 
-COPY . .
+COPY src/template/Template/src/AspnextTemplate.Api/AspnextTemplate.Api.csproj .
 
 
 
@@ -13,6 +13,7 @@ COPY . .
 
 # Restore the dependencies for the specific project
 RUN dotnet restore 
+COPY . .
 
 RUN dotnet test
 
