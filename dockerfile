@@ -25,5 +25,5 @@ RUN dotnet test
 # RUN dotnet publish Aspnext.sln -c Release -o /app/published --no-build
 
 # Publish the application(s) within the solution
-RUN dotnet publish  -c Release -o /app/published
+RUN dotnet publish 'src/template/Template/src/AspnextTemplate.Api/AspnextTemplate.Api.csproj"  -c Release -o /app/published
 
