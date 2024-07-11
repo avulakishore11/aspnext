@@ -1,6 +1,6 @@
 
 # setup base image for runtime image
-FROM mcr.microsoft.com/dotnet/aspnet:8.0-bullseye-slim AS base
+FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
 
 # setup working directory
 WORKDIR /app
@@ -10,7 +10,7 @@ EXPOSE 80
 EXPOSE 443
 
 # setup base image for SDK 
-FROM mcr.microsoft.com/dotnet/sdk:8.0-bullseye-slim AS build
+FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 WORKDIR /src
 COPY ["AspnextTemplate.csproj", "AspnextTemplate/"]
 # run the dotnet restore
