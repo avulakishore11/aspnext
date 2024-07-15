@@ -9,8 +9,8 @@ COPY src/template/Aspnext.Template.csproj src/template/
 RUN dotnet restore src/template/Aspnext.Template.csproj
 
 # Copy the remaining files and build the application
-COPY . .
 WORKDIR /app/src/template
+COPY . .
 RUN dotnet test 
 RUN dotnet publish Aspnext.Template.csproj -c Release -o /publish
 
