@@ -1,22 +1,22 @@
 
 
-# setup base image for SDK 
+# Stage 1: Build the application
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 WORKDIR /app
-COPY src/template/Aspnext.Template.csproj . 
 
-RUN dotnet restore 
-COPY src/template/Aspnext.Template.csproj .
+# Copy the project file to respective folder and restore dependencies 
+COPY src/template/Aspnext.Template.csproj src/template/
+RUN dotnet restore src/template/Aspnext.Template.csproj
+
+# Copy the remaining files and build the application
+COPY . .
+WORKDIR /app/src/template
 RUN dotnet test 
+RUN dotnet publish Aspnext.Template.csproj -c Release -o /publish
 
-FROM build AS publish
-RUN dotnet publish src/template/Aspnext.Template.csproj -c Release -o /publish
-
-# stage 2
-# setup base image for runtime image
-FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
-
+# Stage 2: Create the runtime image
+#FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
 #WORKDIR /app
-
-#COPY --from=build /app/publish 
+#COPY --from=build /publish .
+#ENTRYPOINT ["dotnet", "Aspnext.Template.dll"]
 
