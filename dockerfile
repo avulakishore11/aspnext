@@ -6,11 +6,11 @@ WORKDIR /app
 COPY src/template/Aspnext.Template.csproj . 
 
 RUN dotnet restore 
-COPY . .
+COPY src/template/Aspnext.Template.csproj .
 RUN dotnet test 
 
 FROM build AS publish
-RUN dotnet publish "src/template/Aspnext.Template.csproj" -c Release -o /publish
+RUN dotnet publish -c Release -o /publish
 
 # stage 2
 # setup base image for runtime image
