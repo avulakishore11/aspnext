@@ -11,7 +11,7 @@ RUN dotnet restore src/template/Aspnext.Template.csproj
 # Copy the remaining files and build the application
 WORKDIR /app/src/template
 COPY . .
-RUN dotnet test 
+RUN dotnet test Aspnext.Template.csproj
 RUN dotnet publish Aspnext.Template.csproj -c Release -o /publish
 
 # Stage 2: Create the runtime image
