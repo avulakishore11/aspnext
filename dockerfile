@@ -1,18 +1,19 @@
-# Stage 1: Build the application using SDK image 
+# Stage 1: Build the application
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 WORKDIR /app
 
-# Copy the solution file and restore dependencies
+# Copy the solution file and project file to the container
 COPY Aspnext.sln ./
-COPY src/template/Aspnext.Template.csproj ./
-RUN dotnet restore 
+COPY src/template/Aspnext.Template.csproj src/template/
+
+# Restore dependencies
+RUN dotnet restore Aspnext.sln
 
 # Copy the remaining files and build the application
 COPY . .
-WORKDIR /app
+WORKDIR /app/src/template
 RUN dotnet test
-RUN dotnet build "Aspnext.sln" -c Release 
-RUN dotnet publish "Aspnext.sln" -c Release -o /app/publish
+RUN dotnet publish -c Release -o /publish
 
 # Stage 2: Create the runtime image
 # FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
