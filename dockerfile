@@ -1,3 +1,4 @@
+#  1. THIS DOCKERFILE IS CORRECT TO BUILD AND CREATE AN IMAGE
 # Stage 1: Build the application
 # FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 # WORKDIR /app
@@ -22,6 +23,7 @@
 # ENTRYPOINT ["dotnet", "Aspnext.Template.dll"]
 #############################################################################
 
+# 2. 1.THIS DOCKERFILE IS CORRECT TO BUILD AND CREATE AN IMAGE
 
 # Stage 1: Build the application
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
