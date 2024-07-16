@@ -5,7 +5,7 @@ WORKDIR /app
 # Copy the solution file and restore dependencies
 COPY Aspnext.sln ./
 COPY src/template/Aspnext.Template.csproj ./
-RUN dotnet restore "Aspnext.sln" 
+RUN dotnet restore 
 
 # Copy the remaining files and build the application
 COPY . .
